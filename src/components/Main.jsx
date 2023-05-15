@@ -11,6 +11,7 @@ const MainContainer = styled.main`
   // overflow-y: scroll;
 
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
 `;

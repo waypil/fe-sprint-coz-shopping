@@ -4,23 +4,55 @@ import styled from 'styled-components';
 const Todo = styled.article`
   width: 264px;
   height: 264px;
-  border-radius: 5px;
-
-  background-color: transparent;
 
   flex: 0 0 auto;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   align-items: center;
+  flex-direction: column;
+
+  & * {
+    font-weight: 900;
+    font-size: 16px;
+    overflow: hidden;
+  }
 `;
 
-const ImageContainer = styled.section``;
-const Image = styled.img``;
-const BookmarkButton = styled.button``;
-const InfoContainer = styled.section``;
+const ImageContainer = styled.section`
+  position: relative;
+
+  & > img {
+    border-radius: 12px;
+  }
+`;
+
+const BookmarkButton = styled.button`
+  position: absolute;
+`;
+
+const InfoContainer = styled.section`
+  width: 100%;
+  // height: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .left {
+    height: 100%;
+  }
+  .right * {
+    text-align: end;
+  }
+`;
+
 const Name = styled.p``;
-const DiscountRate = styled.p``;
-const Price = styled.p``;
+const DiscountRate = styled.p`
+  color: #452cdd;
+`;
+const Price = styled.p`
+  font-weight: normal;
+`;
 
 export default function Card({
   imageFileName,
@@ -41,8 +73,8 @@ export default function Card({
           <Name>{name}</Name>
         </div>
         <div className='right'>
-          <DiscountRate>{discountRate * 100}</DiscountRate>
-          <Price>{price}</Price>
+          <DiscountRate>{`${discountRate * 100}%`}</DiscountRate>
+          <Price>{`${price.toLocaleString()}원`}</Price>
         </div>
       </InfoContainer>
     </Todo>

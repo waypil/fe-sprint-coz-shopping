@@ -13,6 +13,9 @@ const FooterContainer = styled.footer`
   align-items: center;
   flex-direction: column;
 
+  position: relative;  // z-index는 position이 static이면 동작 안 함
+  z-index: 1; // MainContainer와 겹쳤을 때 그림자가 사라지는 버그 방지
+
   & * {
     margin: 0;
   }
