@@ -22,6 +22,11 @@ const ImageContainer = styled.section`
   position: relative;
 
   & > img {
+    width: 264px;
+    height: 210px;
+
+    object-fit: cover; // 사진을 변형하지 않고 원본에서 가운데 영역만 출력
+
     border-radius: 12px;
   }
 `;
@@ -57,27 +62,31 @@ const DiscountRate = styled.p`
 
 export default function Card(props) {
   const {
-    imageFileName,
-    isBookmarked,
-    category,
-    name,
-    subtitle,
-    discountRate,
-    price,
-    subscriber,
-  } = props.card;
+    id,
+    type, // Product, Exhibition, Category, Brand
+    title,
+    sub_title, // Exhibition만 존재
+    brand_name, // Brand만 존재
+    price, // Product만 존재
+    discountPercentage, // Product만 존재
+    image_url, // Product, Exhibition, Category 존재
+    brand_image_url, // Brand만 존재
+    follower, // Brand만 존재
+  } = props.cardData;
+
+  console.log(props.cardData);
 
   let rightFragment;
-  if (category === '브랜드') {
+  if (type === 'Brand') {
     rightFragment = (
       <>
         <p>관심고객수</p>
-        <Subtitle>{subscriber.toLocaleString()}</Subtitle>
+        <Subtitle>{follower.toLocaleString()}</Subtitle>
       </>
     );
   } else {
-    const discountRateStr = !discountRate ? '' : `${discountRate * 100}%`;
-    const priceStr = !price ? '' : `${price.toLocaleString()}원`;
+    const discountRateStr = !discountPercentage ? '' : `${discountPercentage}%`;
+    const priceStr = !price ? '' : `${Number(price).toLocaleString()}원`;
     rightFragment = (
       <>
         <DiscountRate>{discountRateStr}</DiscountRate>
@@ -89,13 +98,13 @@ export default function Card(props) {
   return (
     <Todo>
       <ImageContainer>
-        <img src={require(`../data/resources/${imageFileName}`)} alt='카드 이미지'></img>
+        <img src={image_url || brand_image_url} alt='카드 이미지'></img>
         <BookmarkButton></BookmarkButton>
       </ImageContainer>
       <InfoContainer>
         <div className='left'>
-          <Name>{name}</Name>
-          <Subtitle>{subtitle}</Subtitle>
+          <Name>{title || brand_name}</Name>
+          <Subtitle>{sub_title}</Subtitle>
         </div>
         <div className='right'>{rightFragment}</div>
       </InfoContainer>
