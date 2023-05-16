@@ -66,7 +66,7 @@ const MenuIcon = styled(FontAwesomeIcon)`
   color: black;
 `;
 
-const LNB = styled.aside`
+const LNB = styled.ul`
   position: absolute;
 
   width: 200px;
@@ -84,15 +84,32 @@ const LNB = styled.aside`
   align-items: center;
   flex-direction: column;
 
-  & > button {
+  & > li {
+    width: 100%;
+    height: 100%;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
     display: flex;
     justify-content: center;
     align-items: center;
-  }
 
-  & > hr {
-    width: 100%;
-    color: lightgray;
+    & > button {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      justify-content: left;
+      align-items: center;
+
+      & > svg {
+        margin-left: 24px;
+      }
+      & > p {
+        margin-left: 8px;
+        font-size: 16px;
+      }
+    }
   }
 `;
 
@@ -124,17 +141,21 @@ export default function Header(props) {
       <MenuContainer>
         {isLNBOpened ? (
           <LNB>
-            <p>○○○님, 안녕하세요!</p>
-            <hr />
-            <button>
-              <MiniIcon icon={faGift} />
-              <p>상품리스트 페이지</p>
-            </button>
-            <hr />
-            <button>
-              <MiniIcon icon={faStar} />
-              <p>상품리스트 페이지</p>
-            </button>
+            <li>
+              <p>○○○님, 안녕하세요!</p>
+            </li>
+            <li>
+              <button>
+                <MiniIcon icon={faGift} />
+                <p>상품리스트 페이지</p>
+              </button>
+            </li>
+            <li>
+              <button>
+                <MiniIcon icon={faStar} />
+                <p>북마크 페이지</p>
+              </button>
+            </li>
           </LNB>
         ) : (
           <></>
