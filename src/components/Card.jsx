@@ -40,6 +40,7 @@ const InfoContainer = styled.section`
 
   .left {
     height: 100%;
+    text-align: start;
   }
   .right * {
     text-align: end;
@@ -47,21 +48,44 @@ const InfoContainer = styled.section`
 `;
 
 const Name = styled.p``;
+const Subtitle = styled.p`
+  font-weight: normal;
+`;
 const DiscountRate = styled.p`
   color: #452cdd;
 `;
-const Price = styled.p`
-  font-weight: normal;
-`;
 
-export default function Card({
-  imageFileName,
-  isBookmarked,
-  category,
-  name,
-  discountRate,
-  price,
-}) {
+export default function Card(props) {
+  const {
+    imageFileName,
+    isBookmarked,
+    category,
+    name,
+    subtitle,
+    discountRate,
+    price,
+    subscriber,
+  } = props.card;
+
+  let rightFragment;
+  if (category === '브랜드') {
+    rightFragment = (
+      <>
+        <p>관심고객수</p>
+        <Subtitle>{subscriber.toLocaleString()}</Subtitle>
+      </>
+    );
+  } else {
+    const discountRateStr = !discountRate ? '' : `${discountRate * 100}%`;
+    const priceStr = !price ? '' : `${price.toLocaleString()}원`;
+    rightFragment = (
+      <>
+        <DiscountRate>{discountRateStr}</DiscountRate>
+        <Subtitle>{priceStr}</Subtitle>
+      </>
+    );
+  }
+
   return (
     <Todo>
       <ImageContainer>
@@ -71,11 +95,9 @@ export default function Card({
       <InfoContainer>
         <div className='left'>
           <Name>{name}</Name>
+          <Subtitle>{subtitle}</Subtitle>
         </div>
-        <div className='right'>
-          <DiscountRate>{`${discountRate * 100}%`}</DiscountRate>
-          <Price>{`${price.toLocaleString()}원`}</Price>
-        </div>
+        <div className='right'>{rightFragment}</div>
       </InfoContainer>
     </Todo>
   );

@@ -29,22 +29,18 @@ const List = styled.section`
 `;
 
 export default function PreviewSection(props) {
+  let cards = props.cards;
+
+  if (props.text === '북마크 리스트') {
+    cards = cards.filter((card) => card.isBookmarked);
+  }
+
   return (
     <PreviewContainer>
       <Title>{props.text}</Title> {/* "상품 리스트" or "북마크 리스트" */}
       <List>
-        {props.cards.map((card, i) => {
-          return (
-            <Card
-              key={i}
-              imageFileName={card.imageFileName}
-              isBookmarked={card.isBookmarked}
-              category={card.category}
-              name={card.name}
-              discountRate={card.discountRate}
-              price={card.price}
-            ></Card>
-          );
+        {cards.map((card, i) => {
+          return <Card key={i} card={card}></Card>;
         })}
       </List>
     </PreviewContainer>
