@@ -5,6 +5,7 @@ const FooterContainer = styled.footer`
   width: 100%;
   height: 80px;
 
+  background-color: white;
   color: gray;
   box-shadow: 0px -3px 5px rgba(0, 0, 0, 0.25);
 
@@ -13,11 +14,14 @@ const FooterContainer = styled.footer`
   align-items: center;
   flex-direction: column;
 
-  position: relative;  // z-index는 position이 static이면 동작 안 함
+  position: relative; // z-index는 position이 static이면 동작 안 함
   z-index: 1; // MainContainer와 겹쳤을 때 그림자가 사라지는 버그 방지
 
-  & * {
-    margin: 0;
+  & > p:nth-child(1) {
+    margin-top: 15px;
+  }
+  & > p:nth-last-child(1) {
+    margin-bottom: 15px;
   }
 `;
 

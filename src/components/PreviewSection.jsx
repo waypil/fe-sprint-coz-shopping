@@ -7,8 +7,9 @@ const PreviewContainer = styled.section`
   width: 90%;
   height: 100%;
 
+  margin: 20px 0px;
+
   display: flex;
-  // justify-content: space-evenly;
   align-items: left;
   flex-direction: column;
 `;
@@ -17,6 +18,7 @@ const Title = styled.p`
   text-align: left;
   font-weight: 900;
   font-size: 24px;
+  margin-bottom: 10px;
 `;
 const List = styled.section`
   display: flex;

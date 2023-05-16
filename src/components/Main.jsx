@@ -6,12 +6,12 @@ import cards from '../data/dummyData.js';
 
 const MainContainer = styled.main`
   width: 100%;
-  height: 88%;
+  // height: 100%;
 
-  // overflow-y: scroll;
+  // overflow-y: auto;
 
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
 `;
