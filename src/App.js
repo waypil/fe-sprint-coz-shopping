@@ -11,9 +11,21 @@ import logo from './logo.svg';
 
 const MainAndFooter = styled.div`
   width: 100%;
-	height: 100%;
+  height: 100%;
 
+  overflow-x: hidden;
   overflow-y: auto;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+
+  & > div.padding {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+  }
 `;
 
 function App() {
@@ -22,6 +34,7 @@ function App() {
       <Header></Header>
       <MainAndFooter>
         <Main></Main>
+        <div className='padding'></div>
         <Footer></Footer>
       </MainAndFooter>
     </div>
