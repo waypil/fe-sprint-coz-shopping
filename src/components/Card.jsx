@@ -51,9 +51,13 @@ const InfoContainer = styled.section`
     text-align: end;
   }
 `;
-
-const Name = styled.p``;
-const Subtitle = styled.p`
+const P = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+const Name = styled(P)``;
+const Subtitle = styled(P)`
   font-weight: normal;
 `;
 const DiscountRate = styled.p`
