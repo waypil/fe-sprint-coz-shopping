@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faGift, faStar } from '@fortawesome/free-solid-svg-icons';
 
@@ -66,7 +67,7 @@ const MenuIcon = styled(FontAwesomeIcon)`
   color: black;
 `;
 
-const LNB = styled.ul`
+const Dropdown = styled.ul`
   position: absolute;
 
   width: 200px;
@@ -116,14 +117,14 @@ const LNB = styled.ul`
 `;
 
 export default function Header(props) {
-  const [isLNBOpened, setIsLNBOpened] = React.useState(false);
+  const [isDropdownOpened, setIsDropdownOpened] = React.useState(false);
 
-  function openLNB(e) {
-    setIsLNBOpened((prevBool) => !prevBool);
+  function openDropdown(e) {
+    setIsDropdownOpened((prevBool) => !prevBool);
   }
 
-  function closeLNB(e) {
-    setIsLNBOpened((prevBool) => !prevBool);
+  function closeDropdown(e) {
+    setIsDropdownOpened((prevBool) => !prevBool);
   }
   const MiniIcon = styled(FontAwesomeIcon)`
     width: 20px;
@@ -141,8 +142,8 @@ export default function Header(props) {
         <LogoText>COZ Shopping</LogoText>
       </Logo>
       <MenuContainer>
-        {isLNBOpened ? (
-          <LNB>
+        {isDropdownOpened ? (
+          <Dropdown>
             <li>
               <p>○○○님, 안녕하세요!</p>
             </li>
@@ -158,11 +159,11 @@ export default function Header(props) {
                 <p>북마크 페이지</p>
               </button>
             </li>
-          </LNB>
+          </Dropdown>
         ) : (
           <></>
         )}
-        <MenuButton onClick={openLNB}>
+        <MenuButton onClick={openDropdown}>
           <MenuIcon icon={faBars} /> {/* 三 */}
         </MenuButton>
       </MenuContainer>

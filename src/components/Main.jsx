@@ -17,13 +17,15 @@ const MainContainer = styled.main`
   flex-direction: column;
 `;
 
+const LNB = styled.ul``;
+
 export default function Main(props) {
   const [productsData, setProductsData] = React.useState([]);
 
   async function getProductsData() {
     try {
       const response = await axios.get(
-        `http://cozshopping.codestates-seb.link/api/v1/products?count=10`
+        `http://cozshopping.codestates-seb.link/api/v1/products?count=4`
       );
       setProductsData(response.data);
     } catch (error) {
@@ -31,14 +33,30 @@ export default function Main(props) {
     }
   }
 
+  let mainFragment;
+  if (!props.path || props.path === '/') {
+    mainFragment = (
+      <>
+        <PreviewSection text={'상품 리스트'} productsData={productsData}></PreviewSection>
+        <PreviewSection
+          text={'북마크 리스트'}
+          productsData={productsData}
+        ></PreviewSection>
+      </>
+    );
+  } else if (props.path === '/products/list') {
+    mainFragment = (
+      <>
+        <LNB></LNB>
+        <PreviewSection productsData={productsData}></PreviewSection>
+      </>
+    );
+  } else if (props.path === '/bookmark') {
+  }
+
   React.useEffect(() => {
     getProductsData();
   }, []);
 
-  return (
-    <MainContainer>
-      <PreviewSection text={'상품 리스트'} productsData={productsData}></PreviewSection>
-      <PreviewSection text={'북마크 리스트'} productsData={productsData}></PreviewSection>
-    </MainContainer>
-  );
+  return <MainContainer>{mainFragment}</MainContainer>;
 }
